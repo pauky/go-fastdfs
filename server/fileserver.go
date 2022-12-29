@@ -639,24 +639,24 @@ func (c *Server) IsPeer(r *http.Request) bool {
 		cidr  *net.IPNet
 		err   error
 	)
-	IsPublicIP := func(IP net.IP) bool {
-		if IP.IsLoopback() || IP.IsLinkLocalMulticast() || IP.IsLinkLocalUnicast() {
-			return false
-		}
-		if ip4 := IP.To4(); ip4 != nil {
-			switch true {
-			case ip4[0] == 10:
-				return false
-			case ip4[0] == 172 && ip4[1] >= 16 && ip4[1] <= 31:
-				return false
-			case ip4[0] == 192 && ip4[1] == 168:
-				return false
-			default:
-				return true
-			}
-		}
-		return false
-	}
+	// IsPublicIP := func(IP net.IP) bool {
+	// 	if IP.IsLoopback() || IP.IsLinkLocalMulticast() || IP.IsLinkLocalUnicast() {
+	// 		return false
+	// 	}
+	// 	if ip4 := IP.To4(); ip4 != nil {
+	// 		switch true {
+	// 		case ip4[0] == 10:
+	// 			return false
+	// 		case ip4[0] == 172 && ip4[1] >= 16 && ip4[1] <= 31:
+	// 			return false
+	// 		case ip4[0] == 192 && ip4[1] == 168:
+	// 			return false
+	// 		default:
+	// 			return true
+	// 		}
+	// 	}
+	// 	return false
+	// }
 	//return true
 	ip = c.util.GetClientIp(r)
 	if c.util.Contains("0.0.0.0", Config().AdminIps) {
