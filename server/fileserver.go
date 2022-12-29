@@ -660,9 +660,9 @@ func (c *Server) IsPeer(r *http.Request) bool {
 	//return true
 	ip = c.util.GetClientIp(r)
 	if c.util.Contains("0.0.0.0", Config().AdminIps) {
-		if IsPublicIP(net.ParseIP(ip)) {
-			return false
-		}
+		// if IsPublicIP(net.ParseIP(ip)) {
+		// 	return false
+		// }
 		return true
 	}
 	if c.util.Contains(ip, Config().AdminIps) {
